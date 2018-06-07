@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/bootstrap";
+
+.media {
+    display: flex;
+    margin: 10px;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+}
+
+small {
+    font-size: 16px;
+}
+
+h6 {
+    margin: 15px 0;
+}
