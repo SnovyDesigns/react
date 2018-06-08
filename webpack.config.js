@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -10,6 +12,17 @@ module.exports = {
         filename: 'bundle.js'
     },
     mode: process.env.NODE_ENV,
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: false
+            }),
+            new OptimizeCSSAssetsPlugin({})
+        ]
+    },
+    devtool: devMode ? 'cheap-module-eval-source-map' : '',
     module: {
         rules: [
             {
@@ -30,14 +43,46 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                test: /\.(svg|eot|ttf|woff|woff2)$/,
                 use: {
                     loader: 'url-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        limit: 10000
-                    }
                 }
+            },
+            {
+                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                loaders: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: 'images/[name].[ext]',
+                            limit: 10000
+                        }
+                    },
+                    {
+                        loader: 'img-loader',
+                        options: {
+                            plugins: process.env.NODE_ENV === 'production' && [
+                                require('imagemin-gifsicle')({
+                                    interlaced: false
+                                }),
+                                require('imagemin-mozjpeg')({
+                                    progressive: true,
+                                    arithmetic: false
+                                }),
+                                require('imagemin-pngquant')({
+                                    floyd: 0.5,
+                                    speed: 2
+                                }),
+                                require('imagemin-svgo')({
+                                    plugins: [
+                                        { removeTitle: true },
+                                        { convertPathData: false }
+                                    ]
+                                })
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     },
