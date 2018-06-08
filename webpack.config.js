@@ -3,15 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = process.env.NODE_ENV !== 'production'; // eslint-disable-line
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src') + '/app/index.js',
+    entry: path.resolve(__dirname, 'src') + '/app/index.js', // eslint-disable-line
     output: {
         path: path.resolve(__dirname, 'dist'), // eslint-disable-line
         filename: 'bundle.js'
     },
-    mode: process.env.NODE_ENV,
+    mode: process.env.NODE_ENV, // eslint-disable-line
     optimization: {
         minimizer: [
             new UglifyJsPlugin({
@@ -27,7 +27,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                include: path.resolve(__dirname, 'src'),
+                include: path.resolve(__dirname, 'src'), // eslint-disable-line
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -61,7 +61,7 @@ module.exports = {
                     {
                         loader: 'img-loader',
                         options: {
-                            plugins: process.env.NODE_ENV === 'production' && [
+                            plugins: process.env.NODE_ENV === 'production' && [ // eslint-disable-line
                                 require('imagemin-gifsicle')({
                                     interlaced: false
                                 }),
@@ -88,7 +88,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'images': path.resolve(__dirname, 'src/images')
+            'images': path.resolve(__dirname, 'src/images') // eslint-disable-line
         }
     },
     plugins: [
