@@ -9,10 +9,21 @@ const ContactForm = createReactClass({
     render: function() {
         return (
             <form className="contactForm">
-                <input type="text" placeholder="Imię" value={this.props.contact.firstName}/>
-                <input type="text" placeholder="Nazwisko" value={this.props.contact.lastName}/>
-                <input type="email" placeholder="Email" value={this.props.contact.email}/>
-                <button type="submit">Dodaj kontakt</button>
+                <div className="row justify-content-center mb-3">
+                    <div className="form-group col-4">
+                        <input className="form-control" type="text" placeholder="Imię" value={this.props.contact.firstName}/>
+                    </div>
+                    <div className="form-group col-4">
+                        <input className="form-control" type="text" placeholder="Nazwisko" value={this.props.contact.lastName}/>
+                    </div>
+                    <div className="form-group col-4">
+                        <input className="form-control" type="email" placeholder="Email" value={this.props.contact.email}/>
+                    </div>
+                    
+                </div>
+                <div className="row justify-content-center">
+                    <button className="btn btn-primary col-3" type="submit">Dodaj kontakt</button>
+                </div>
             </form> 
         );
     }

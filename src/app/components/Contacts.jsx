@@ -13,9 +13,9 @@ const Contacts = createReactClass({
         });
 
         return (
-            <ul className="contactsLists">
+            <div className="row justify-content-around contacts">
                 {contacts}
-            </ul> 
+            </div> 
         );
     }
 });

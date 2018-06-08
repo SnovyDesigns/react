@@ -9,7 +9,7 @@ import Contacts from '../components/Contacts.jsx';
 const App = createReactClass({
     render: function() {
         return (
-            <div className="app">
+            <div className="app container">
                 <ContactForm contact={contactForm} />
                 <Contacts items={contacts} />
             </div>

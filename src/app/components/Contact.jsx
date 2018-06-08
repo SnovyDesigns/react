@@ -8,11 +8,14 @@ const Contact = createReactClass({
     },
     render: function() {
         return (
-            <div>
-                <img src="https://image.flaticon.com/icons/svg/265/265674.svg" height="50" width="50" alt="Contact icon"/>
-                <p className="contactLabel">{`Imię: ${this.props.item.firstName}`}</p>
-                <p className="contactLabel">{`Nazwisko: ${this.props.item.lastName}`}</p>
-                <a href={`mailto:${this.props.item.email}`}>{this.props.item.email}</a>
+            <div className="col-3 card">
+                <img className="card-img-top mt-2" src="https://image.flaticon.com/icons/svg/265/265674.svg" height="150" width="50" alt="Contact icon"/>
+                <div className="card-body">
+                    <h5 className="card-title">Bio info:</h5>
+                    <p className="contactLabel card-text"><b>Imię:</b> <span>{this.props.item.firstName}</span></p>
+                    <p className="contactLabel card-text"><b>Nazwisko:</b> <span>{this.props.item.lastName}</span></p>
+                    <a href={`mailto:${this.props.item.email}`}><b>Email:</b> <span>{this.props.item.email}</span></a>
+                </div>  
             </div>
         );
     }
