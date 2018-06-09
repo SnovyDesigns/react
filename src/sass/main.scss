@@ -1,23 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
 
-.contactForm {
-    margin: 10px 0 25px 0;
-    padding: 20px;
-    border: 1px solid rgb(109, 109, 109);
-}
-
-.contacts {
-    padding: 20px;
-    border: 1px solid rgb(113, 112, 112);
-    background-color: rgb(244, 240, 240);
-}
-
-.card a {
-    color: #000;
-    
-    span {
-        display: block;
-        font-size: 14px;
-        margin-top: 7px;
-    }
+.card-title {
+    font-size: 36px;
 }
